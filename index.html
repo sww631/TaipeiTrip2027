@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light only" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E" />
+  <title>台北五天四夜專屬互動指南（2027/01/07–01/11）</title>
+  <style>
+    :root {
+      --bg: #f4f7fa;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --subtle: #64748b;
+      --border: #e2e8f0;
+      --primary: #0f766e;
+      --primary-soft: #ccfbf1;
+      --primary-dark: #115e59;
+      --blue: #1d4ed8;
+      --blue-soft: #dbeafe;
+      --green: #15803d;
+      --green-bg: #dcfce7;
+      --amber: #b45309;
+      --amber-bg: #fef3c7;
+      --red: #b91c1c;
+      --red-bg: #fee2e2;
+      --gold: #9a3412;
+      --gold-bg: #fff7ed;
+      --gold-border: #fed7aa;
+      --shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding-bottom: 52px;
+    }
+
+    /* 頂部固定導覽區 */
+    .sticky-top {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .app-header {
+      padding: 12px 16px 8px;
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .app-title {
+      font-size: 1.04rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .app-subtitle {
+      font-size: 0.75rem;
+      color: var(--subtle);
+      margin-top: 2px;
+    }
+
+    .hotel-pill {
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      padding: 6px 11px;
+      border-radius: 999px;
+      white-space: nowrap;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    /* 橫向滑動分頁列 */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 6px 16px 10px;
+      max-width: 720px;
+      margin: 0 auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .tab-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.2;
+    }
+
+    .tab-btn small {
+      font-size: 0.66rem;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 3px 8px rgba(15, 118, 110, 0.25);
+    }
+
+    /* 主內容區 */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 14px 14px 24px;
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 每日概要橫幅 */
+    .day-banner {
+      background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .day-banner.warn-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+
+    .day-banner h2 {
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .day-banner p {
+      font-size: 0.84rem;
+      opacity: 0.94;
+    }
+
+    .sun-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .sun-chip {
+      background: rgba(255, 255, 255, 0.18);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 8px;
+    }
+
+    /* 狀態與風險標籤 */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .badge-green { background: var(--green-bg); color: var(--green); }
+    .badge-amber { background: var(--amber-bg); color: var(--amber); }
+    .badge-red { background: var(--red-bg); color: var(--red); }
+    .badge-blue { background: var(--blue-soft); color: var(--blue); }
+    .badge-gold { background: #ffedd5; color: #c2410c; }
+
+    /* 一般卡片 */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* 總覽行程速查列 */
+    .summary-day {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 11px 12px;
+      margin-bottom: 9px;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .summary-day:last-child {
+      margin-bottom: 0;
+    }
+
+    .summary-day:active {
+      background: #eef2f6;
+    }
+
+    .summary-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .summary-head strong {
+      font-size: 0.88rem;
+      color: var(--primary-dark);
+    }
+
+    .summary-list {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .summary-list li {
+      padding: 2px 0;
+    }
+
+    /* 卡片式時間軸 */
+    .timeline {
+      position: relative;
+      padding-left: 22px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: #cbd5e1;
+    }
+
+    .t-item {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .t-dot {
+      position: absolute;
+      left: -22px;
+      top: 18px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 4px solid var(--primary);
+      z-index: 2;
+    }
+
+    .t-dot.green { border-color: #16a34a; }
+    .t-dot.amber { border-color: #d97706; }
+    .t-dot.red { border-color: #dc2626; }
+
+    .t-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .t-card.risk-red { border-left: 4px solid #dc2626; }
+    .t-card.risk-amber { border-left: 4px solid #d97706; }
+    .t-card.risk-green { border-left: 4px solid #16a34a; }
+
+    .t-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .t-time {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      background: #f0fdfa;
+      border: 1px solid #99f6e4;
+      padding: 3px 9px;
+      border-radius: 8px;
+    }
+
+    .t-stay {
+      font-size: 0.74rem;
+      color: var(--subtle);
+      font-weight: 600;
+    }
+
+    .t-heading {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .t-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .info-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 11px;
+      font-size: 0.81rem;
+      color: var(--muted);
+      margin-bottom: 9px;
+    }
+
+    .info-box strong {
+      color: var(--text);
+    }
+
+    .info-box.alert-red {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: #7f1d1d;
+    }
+
+    .info-box.alert-amber {
+      background: #fffbeb;
+      border-color: #fde68a;
+      color: #78350f;
+    }
+
+    /* 隱藏美食推薦卡 */
+    .gem-section {
+      background: linear-gradient(180deg, #fffaf5 0%, #ffffff 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-top: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .gem-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .gem-header h3 {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .gem-item {
+      background: #ffffff;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .gem-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .gem-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .gem-name {
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .gem-meta {
+      font-size: 0.77rem;
+      color: var(--subtle);
+      margin-bottom: 6px;
+    }
+
+    .gem-reason {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    /* 按鈕與 Google Maps 導航群組 */
+    .sub-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--subtle);
+      margin: 9px 0 5px;
+    }
+
+    .map-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 6px;
+    }
+
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 11px;
+      border-radius: 10px;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #1d4ed8;
+      transition: transform 0.1s ease;
+    }
+
+    .map-btn:active {
+      transform: scale(0.97);
+    }
+
+    .map-btn.route {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #047857;
+    }
+
+    .map-btn.food {
+      background: #fff7ed;
+      border-color: #fed7aa;
+      color: #c2410c;
+    }
+
+    .map-btn.shop {
+      background: #faf5ff;
+      border-color: #e9d5ff;
+      color: #7e22ce;
+    }
+
+    /* 表格橫向捲動容器 */
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-top: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      min-width: 510px;
+      background: #ffffff;
+    }
+
+    th, td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* 除錯警示清單 */
+    .alert-card {
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .alert-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .alert-card.red { background: #fef2f2; border-color: #fecaca; }
+    .alert-card.amber { background: #fffbeb; border-color: #fde68a; }
+    .alert-card.green { background: #f0fdf4; border-color: #bbf7d0; }
+
+    .alert-card h4 {
+      font-size: 0.87rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .alert-card p {
+      font-size: 0.81rem;
+      color: var(--muted);
+    }
+
+    /* 互動核對清單 */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 6px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .check-item:last-child {
+      border-bottom: none;
+    }
+
+    .check-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .check-text {
+      font-size: 0.83rem;
+      color: var(--text);
+    }
+
+    .check-text small {
+      display: block;
+      color: var(--subtle);
+      font-size: 0.76rem;
+      margin-top: 2px;
+    }
+
+    .check-item.done .check-text {
+      text-decoration: line-through;
+      color: var(--subtle);
+    }
+
+    /* 底部切換日按鈕 */
+    .day-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .nav-btn {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text);
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-btn.primary {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .footnote {
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--subtle);
+      margin-top: 18px;
+      padding: 0 10px;
+    }
+    /* 手機安全區域 */
+    :root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+    html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+    .sticky-top { top: env(safe-area-inset-top, 0px); }
+    body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--card); z-index: 101; }
+    table { display: block; overflow-x: auto; max-width: 100%; }
+  </style>
+</head>
+<body>
+
+  <header class="sticky-top">
+    <div class="app-header">
+      <div>
+        <div class="app-title">🇹🇼 台北 5D4N 專屬互動指南</div>
+        <div class="app-subtitle">2027/01/07（週四）– 01/11（週一）</div>
+      </div>
+      <a class="hotel-pill" href="https://www.google.com/maps/search/?api=1&query=台北凱達大飯店+台北市萬華區艋舺大道167號" target="_blank" rel="noopener noreferrer">🏨 凱達大飯店</a>
+    </div>
+    <nav class="tab-bar" role="tablist">
+      <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview')">📌 總覽<small>總表/除錯</small></button>
+      <button class="tab-btn" data-tab="day1" onclick="switchTab('day1')">Day 1<small>1/7 週四</small></button>
+      <button class="tab-btn" data-tab="day2" onclick="switchTab('day2')">Day 2<small>1/8 週五</small></button>
+      <button class="tab-btn" data-tab="day3" onclick="switchTab('day3')">Day 3<small>1/9 週六</small></button>
+      <button class="tab-btn" data-tab="day4" onclick="switchTab('day4')">Day 4<small>1/10 週日</small></button>
+      <button class="tab-btn" data-tab="day5" onclick="switchTab('day5')">Day 5<small>1/11 週一</small></button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- ==================== 總覽與除錯 ==================== -->
+    <section id="overview" class="tab-panel active">
+      <div class="day-banner warn-banner">
+        <h2>🛡️ 智能除錯與行前指揮中心</h2>
+        <p>星期排列實際對應 <strong>2027 年 1 月 7 日至 11 日</strong>（春節新月在 2/6 23:54，適逢 1/8 前一輪新月，無休市與花期衝突）。全數據點已更新精確地址連結並追加每日 3 間高分隱藏美食。</p>
+        <div class="sun-row">
+          <span class="sun-chip">🌅 每日日出 06:40</span>
+          <span class="sun-chip">🌇 日落 17:19–17:22</span>
+          <span class="sun-chip">🌃 全黑 17:44–17:47</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>🕒 五天行程資訊總表（點選直接切換）</span>
+          <span class="badge badge-blue">速查</span>
+        </div>
+
+        <div class="summary-day" onclick="switchTab('day1')">
+          <div class="summary-head">
+            <strong>Day 1｜1/7（週四）萬華＋東區</strong>
+            <span class="badge badge-amber">🟡 18:30 準時離場</span>
+          </div>
+          <ul class="summary-list">
+            <li>🚆 12:10–13:55 UO112 抵台 ➜ 約 15:15–16:38 入住凱達</li>
+            <li>🍽️ 17:00–18:30 南機場夜市（合吃 1–2 樣開胃｜+湯包棧/朴子當歸鴨）</li>
+            <li>🍽️ 19:30–21:30 燒肉擔當本店（預估 19:02–19:10 到｜+龍門美景）</li>
+          </ul>
+        </div>
+
+        <div class="summary-day" onclick="switchTab('day2')">
+          <div class="summary-head">
+            <strong>Day 2｜1/8（週五）十分＋九份＋西門</strong>
+            <span class="badge badge-red">🔴 17:20 日落 / 打擊場 22:00 關</span>
+          </div>
+          <ul class="summary-list">
+            <li>🏛️ 09:30–12:00 十分老街放天燈（瑞芳順遊阿霞龍鳳腿/美食廣場）</li>
+            <li>🏛️ 12:30–16:30 九份老街（包車可延至 17:45 看點燈｜+酉時暮光）</li>
+            <li>🍽️ 19:30 或 20:00 無老鍋西門 ➜ 大聯盟打棒球（22:00 關）｜+師園鹽酥雞</li>
+          </ul>
+        </div>
+
+        <div class="summary-day" onclick="switchTab('day3')">
+          <div class="summary-head">
+            <strong>Day 3｜1/9（週六）中山＋大稻埕＋寧夏</strong>
+            <span class="badge badge-amber">🟡 赤丸改赤峰街 / 16:45 搶日落</span>
+          </div>
+          <ul class="summary-list">
+            <li>🏛️ 11:30–15:15 中山赤峰街（貳樓/麵線町/赤丸/參樓飾品/灑白甜）</li>
+            <li>🏛️ 15:30–16:45 迪化街（路力常 14:00 售罄，備案滋養/純真豆花）</li>
+            <li>🌅 16:50–18:30 大稻埕碼頭日落 ➜ 18:45 寧夏夜市（+Bopomoo/鼠皮咖啡）</li>
+          </ul>
+        </div>
+
+        <div class="summary-day" onclick="switchTab('day4')">
+          <div class="summary-head">
+            <strong>Day 4｜1/10（週日）松菸＋饒河</strong>
+            <span class="badge badge-red">🔴 CREM 僅外帶 / 11 攤須分食</span>
+          </div>
+          <ul class="summary-list">
+            <li>🍽️ 12:30–14:00 Waku +（國父紀念館 2/3 號出口｜+蘇阿姨比薩屋）</li>
+            <li>🏛️ 14:00–18:00 松菸市集、誠品、三徑就荒、CREM（須預訂外帶）</li>
+            <li>🍽️ 18:30–21:00 饒河夜市 11 攤＋彩虹橋（+阿根臭豆腐/加賀魷魚）</li>
+          </ul>
+        </div>
+
+        <div class="summary-day" onclick="switchTab('day5')">
+          <div class="summary-head">
+            <strong>Day 5｜1/11（週一）華西街＋返港</strong>
+            <span class="badge badge-red">🔴 11:15–11:30 必離飯店</span>
+          </div>
+          <ul class="summary-list">
+            <li>🍽️ 09:30–11:00 小王煮瓜（週一營業，10:30 前完食）＋龍山寺</li>
+            <li>🌟 華西街早餐加碼：一甲子餐飲、三六食粑、誠記原汁排骨湯</li>
+            <li>🚆 11:15–11:30 赴桃園機場 ➜ 14:50–16:55 UO113 返港</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>🚨 五大動線、時間軸與商家實測診斷</span>
+          <span class="badge badge-red">必讀預警</span>
+        </div>
+
+        <div class="alert-card red">
+          <h4>🔴 高風險 1：Day 5 原案 12:00–12:15 赴機場趕機危機</h4>
+          <p>UO113 於 <strong>14:50</strong> 起飛（推估 13:50 關櫃）。機捷含北車地下街步程需 <strong>66–92 分鐘</strong>，若 12:15 出發遇慢車恐 13:47 才到，僅剩 3 分鐘！<strong>解方：</strong>搭機捷請改 <strong>11:15–11:30</strong> 離店；預約計程車 11:30 出發約 12:10–12:30 抵航廈。</p>
+        </div>
+
+        <div class="alert-card red">
+          <h4>🔴 高風險 2：Day 2 九份 16:30 撤離與「大聯盟 22:00 打烊」衝突</h4>
+          <p>1/8 日落為 <strong>17:20</strong>、天黑 <strong>17:45</strong>。若想留看點燈延至 17:45–18:00 包車下山，無老鍋延至 20:00 後才吃；但<strong>大聯盟棒壘球打擊場平日只營業至 22:00</strong>，且須走峨眉街停車場對面電梯上 8 樓！欲打棒球請 16:30 準時下山並訂 19:30 前吃鍋。</p>
+        </div>
+
+        <div class="alert-card amber">
+          <h4>🟡 中風險 3：Day 3 赤丸改排赤峰街、路力早售罄＆大稻埕日落</h4>
+          <p>查核證實<strong>赤丸團子實位於赤峰街 49 巷 2 號</strong>（麵線町旁），非迪化街！<strong>路力草莓大福</strong>週六常於 14:00 售罄，15:30 抵達恐撲空（備案：滋養和菓子或純真豆花）。另務必 <strong>16:40–16:45 離街</strong>搶大稻埕 17:21 日落；參樓研製所為自然手作飾品選物店。</p>
+        </div>
+
+        <div class="alert-card amber">
+          <h4>🟡 中風險 4：Day 1 休息時間短與 Day 4 CREM 僅提供預訂外帶</h4>
+          <p>Day 1 南機場僅合吃 1–2 樣開胃（如湯包棧、朴子當歸鴨），<strong>18:30 準時離場</strong> 32–40 分鐘可達燒肉擔當。Day 4 <strong>CREM 奶油甜點專門店</strong>僅週五至日營業且<strong>無內用座位、須提前線上預訂外帶</strong>；另彩虹橋位於饒河夜市北側水門，非松菸往饒河途徑。</p>
+        </div>
+
+        <div class="alert-card green">
+          <h4>🟢 年份校準與季節確認</h4>
+          <p>對應 2027 年 1 月非春節檔期，全行程無花期不符之園區，小王煮瓜、一甲子餐飲等週一早晨皆正常營業。</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>✈️ 桃園機場 ⇄ 凱達大飯店定量推算</span>
+          <span class="badge badge-blue">緩衝模型</span>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>情境與出發設定</th>
+                <th>關鍵拆解條件</th>
+                <th>機場捷運方案</th>
+                <th>計程車方案</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Day 1 最佳</strong><br>13:55 降落</td>
+                <td>無託運＋快速通關約 35 分鐘出關</td>
+                <td>總耗時 57–78 分<br><strong>15:27–15:48 到</strong></td>
+                <td>總耗時 45–60 分<br><strong>15:15–15:30 到</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Day 1 一般</strong><br>13:55 降落</td>
+                <td>領行李通關約 60 分鐘出關</td>
+                <td><strong>15:52–16:13 到</strong></td>
+                <td><strong>15:40–15:55 到</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Day 1 延誤</strong><br>13:55 降落</td>
+                <td>人龍＋行李慢約 85 分鐘出關</td>
+                <td><strong>16:17–16:38 到</strong></td>
+                <td><strong>16:05–16:20 到</strong><br>（推薦免搬行李）</td>
+              </tr>
+              <tr>
+                <td><strong>Day 5 方案 A</strong><br>11:15 離飯店</td>
+                <td>機捷含北車步行約 66–92 分鐘</td>
+                <td><span class="badge badge-green">12:21–12:47 到</span><br>命中建議窗</td>
+                <td><span class="badge badge-green">11:55–12:15 到</span></td>
+              </tr>
+              <tr>
+                <td><strong>Day 5 方案 B</strong><br>11:30 離飯店</td>
+                <td>針對 13:50 關櫃保留 48–80 分餘裕</td>
+                <td><span class="badge badge-green">12:36–13:02 到</span><br>機捷可接受底線</td>
+                <td><span class="badge badge-green">12:10–12:30 到</span><br>從容穩妥</td>
+              </tr>
+              <tr>
+                <td><strong>Day 5 原案緊繃</strong><br>12:00 離飯店</td>
+                <td>遇候車或地下街拖行李即偏緊</td>
+                <td><span class="badge badge-amber">13:06–13:32 到</span></td>
+                <td><span class="badge badge-green">12:40–13:00 到</span></td>
+              </tr>
+              <tr>
+                <td><strong>Day 5 原案紅燈</strong><br>12:15 離飯店</td>
+                <td>慢車距假設 13:50 關櫃僅剩 3 分鐘</td>
+                <td><span class="badge badge-red">13:21–13:47 到</span><br>極高風險應取消</td>
+                <td><span class="badge badge-amber">12:55–13:15 到</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>✅ 行前 7–14 天必查核對清單</span>
+          <span class="badge badge-blue">自動記憶打勾</span>
+        </div>
+        <label class="check-item"><input type="checkbox" data-chk="c1"><span class="check-text">核實香港快運 UO112 / UO113 冬季時刻與實際關櫃時間<small>查官網與確認信；若關櫃早於起飛前 60 分鐘，Day 5 須再提前 15–30 分出發</small></span></label>
+        <label class="check-item"><input type="checkbox" data-chk="c2"><span class="check-text">查詢台鐵平溪線施工/接駁資訊與 788、1062 公車冬季班距<small>上台鐵官網與雙北公車 App；若平溪線有異動，Day 2 直接改包車</small></span></label>
+        <label class="check-item"><input type="checkbox" data-chk="c3"><span class="check-text">完成預約：燒肉擔當、無老鍋西門、貳樓中山南西、Waku + 及 CREM 外帶<small>CREM 僅提供週五至日預訂自取且極易完售，務必提前於官方管道下訂</small></span></label>
+        <label class="check-item"><input type="checkbox" data-chk="c4"><span class="check-text">追蹤赤峰街、迪化街與松菸小店近 1 個月 IG 臨時公休公告<small>核實麵線町、Zubiba、伊良可樂、參樓研製所、灑白甜、赤丸、路力、三徑就荒及大聯盟</small></span></label>
+        <label class="check-item"><input type="checkbox" data-chk="c5"><span class="check-text">確認週末市集攤期（1/9–1/10）＆出發週東北季風降雨預報<small>查心中山與松菸市集粉專；若 Day 2 預報大雨濕冷備妥市區室內或北投溫泉方案</small></span></label>
+      </div>
+
+      <div class="day-nav">
+        <button class="nav-btn primary" onclick="switchTab('day1')">開始檢視 Day 1 ➡️</button>
+      </div>
+    </section>
+
+    <!-- ==================== DAY 1 ==================== -->
+    <section id="day1" class="tab-panel">
+      <div class="day-banner">
+        <h2>Day 1｜抵達台北 ➡️ 南機場夜市 ➡️ 燒肉</h2>
+        <p>2027 年 1 月 7 日（週四）｜重點：控管南機場墊胃份量，18:30 準時搭捷運趕赴東區燒肉擔當。</p>
+        <div class="sun-row">
+          <span class="sun-chip">🌅 日出 06:40</span>
+          <span class="sun-chip">🌇 日落 17:19</span>
+          <span class="sun-chip">🌃 天黑 17:44</span>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot green"></div>
+          <div class="t-card risk-green">
+            <div class="t-top">
+              <span class="t-time">12:10 – 13:55</span>
+              <span class="t-stay">⏱️ 105 分鐘</span>
+            </div>
+            <div class="t-heading">🚆 香港快運 UO112 飛往桃園機場</div>
+            <div class="t-desc">旅客預定去程航班（行前請再確認實際航廈與冬季班表）。</div>
+            <div class="map-grid">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=桃園國際機場" target="_blank" rel="noopener noreferrer">✈️ 桃園國際機場</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot amber"></div>
+          <div class="t-card risk-amber">
+            <div class="t-top">
+              <span class="t-time">13:55 – 16:45</span>
+              <span class="badge badge-amber">🟡 留意抵達餘裕</span>
+            </div>
+            <div class="t-heading">🚆🏨 入境通關與入住台北凱達大飯店</div>
+            <div class="info-box">
+              <strong>📍 飯店地址：</strong>台北市萬華區艋舺大道167號（捷運龍山寺站 2 號出口步行約 3 分鐘）。<br>
+              <strong>⏱️ 抵達推估：</strong>一般 60 分鐘通關情境下，機捷約 <strong>15:52–16:13</strong> 到、計程車約 <strong>15:40–15:55</strong> 到；若延誤至 85 分鐘出關，機捷最晚 <strong>16:38</strong> 才抵飯店。<br>
+              <strong>🚆 交通建議：</strong>機捷直達車至台北車站，拖行李走地下通道 8–12 分鐘轉板南線（全程 57–78 分鐘）；或直接搭計程車（含步程 45–60 分鐘）省力不少。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=桃園國際機場&destination=台北凱達大飯店+台北市萬華區艋舺大道167號&travelmode=transit" target="_blank" rel="noopener noreferrer">🚆 導航：機場 ➡️ 飯店</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=台北凱達大飯店+台北市萬華區艋舺大道167號" target="_blank" rel="noopener noreferrer">🏨 凱達大飯店（精確地標）</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot amber"></div>
+          <div class="t-card risk-amber">
+            <div class="t-top">
+              <span class="t-time">17:00 – 18:30</span>
+              <span class="badge badge-amber">🟡 18:30 準時離場</span>
+            </div>
+            <div class="t-heading">🍽️ 南機場夜市掃街（開胃小食）</div>
+            <div class="t-desc">建議停留 60–90 分鐘。由凱達大飯店步行約 10–12 分鐘即達中正區中華路二段 307 巷至 315 巷夜市入口。</div>
+            <div class="info-box alert-red">
+              <strong>⚠️ 胃容量提醒：</strong>南機場與燒肉僅隔約 1 小時！切忌吃大份麵飯或油炸物，建議兩人合買 <strong>1 至 2 樣小吃</strong> 淺嚐留肚（推薦下方湯包棧或朴子當歸鴨）。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=台北凱達大飯店+台北市萬華區艋舺大道167號&destination=南機場夜市+台北市中正區中華路二段307巷&travelmode=walking" target="_blank" rel="noopener noreferrer">🚶 步行：飯店 ➡️ 南機場</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=南機場夜市+台北市中正區中華路二段307巷" target="_blank" rel="noopener noreferrer">🏮 南機場夜市（精確地標）</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot green"></div>
+          <div class="t-card risk-green">
+            <div class="t-top">
+              <span class="t-time">19:30 – 21:30</span>
+              <span class="badge badge-green">🟢 餘裕從容</span>
+            </div>
+            <div class="t-heading">🍽️ 燒肉擔當本店 (Yakiniku PIC)</div>
+            <div class="t-desc">建議停留約 120 分鐘（每日 17:30–23:30，最後入座 22:30，桌邊代烤頂級燒肉，務必提前訂位）。</div>
+            <div class="info-box">
+              <strong>📍 精確地址：</strong>台北市大安區敦化南路一段161巷52號。<br>
+              <strong>🚆 交通模型：</strong>18:30 從南機場步行至龍山寺站或小南門站（約 10–12 分鐘），搭板南線至忠孝敦化站後步行約 5–7 分鐘，全程約 <strong>32–40 分鐘</strong>，預計 <strong>19:02–19:10</strong> 抵達。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=南機場夜市+台北市中正區中華路二段307巷&destination=燒肉擔當本店+台北市大安區敦化南路一段161巷52號&travelmode=transit" target="_blank" rel="noopener noreferrer">🚆 導航：南機場 ➡️ 燒肉</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=燒肉擔當本店+台北市大安區敦化南路一段161巷52號" target="_blank" rel="noopener noreferrer">🥩 燒肉擔當本店（精確地標）</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gem-section">
+        <div class="gem-header">
+          <h3>🌟 Day 1 在地隱藏美食追加（週四確定營業）</h3>
+          <span class="badge badge-gold">萬華＋東區</span>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">1. 湯包棧（南機場夜市）</span>
+            <span class="badge badge-green">⭐ Google 4.6 分（540 則）</span>
+          </div>
+          <div class="gem-meta">📍 台北市中正區中華路二段311巷23號</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>隱身南機場巷弄內的在地人湯包首選，「鮮肉湯包」現點現包、每籠 7 顆僅 NT$100（約名店半價），咬開瞬間鮮甜爆汁，份量精巧適合當燒肉前開胃點心。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=湯包棧+台北市中正區中華路二段311巷23號" target="_blank" rel="noopener noreferrer">🥟 導航：湯包棧</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">2. 朴子當歸鴨（南機場夜市）</span>
+            <span class="badge badge-green">⭐ Google 4.8 分（151 則）</span>
+          </div>
+          <div class="gem-meta">📍 台北市中正區中華路二段313巷27號 ｜ 🕒 17:00–22:00（週一休）</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>獲讚「台北最好喝的當歸湯」，祖傳中藥慢熬的琥珀湯頭溫潤清香不厚重；招牌「當歸鴨腿麵線」（NT$90）搭老闆娘自製辣椒醬，一月冬夜兩人分食一碗最暖胃。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=朴子當歸鴨+台北市中正區中華路二段313巷27號" target="_blank" rel="noopener noreferrer">🍲 導航：朴子當歸鴨</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">3. 龍門美景川味小吃（東區忠孝敦化）</span>
+            <span class="badge badge-gold">🔥 老饕私藏名攤</span>
+          </div>
+          <div class="gem-meta">📍 台北市大安區忠孝東路四段97號B1（頂好名店城地下一樓轉角）</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>僅有一排 L 型低調座位卻獲封「全台北最好吃紅油抄手」，抄手皮薄彈嫩、內餡飽滿，淋上微辣香麻醬汁後層次豐富，東區行家必試。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=龍門美景川味小吃+台北市大安區忠孝東路四段97號B1" target="_blank" rel="noopener noreferrer">🌶️ 導航：龍門美景川味小吃</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-nav">
+        <button class="nav-btn" onclick="switchTab('overview')">⬅️ 回總覽</button>
+        <button class="nav-btn primary" onclick="switchTab('day2')">Day 2 十分九份 ➡️</button>
+      </div>
+    </section>
+
+    <!-- ==================== DAY 2 ==================== -->
+    <section id="day2" class="tab-panel">
+      <div class="day-banner">
+        <h2>Day 2｜十分九份山城 ⛰️ 無老鍋 ➡️ 打棒球</h2>
+        <p>2027 年 1 月 8 日（週五）｜重點：評估 16:30 下山（可打棒球）或延後包車看九份點燈（打擊場 22:00 關）。</p>
+        <div class="sun-row">
+          <span class="sun-chip">🌅 日出 06:40</span>
+          <span class="sun-chip">🌇 日落 17:20</span>
+          <span class="sun-chip">🌃 天黑 17:45</span>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot green"></div>
+          <div class="t-card risk-green">
+            <div class="t-top">
+              <span class="t-time">09:30 – 12:00</span>
+              <span class="t-stay">⏱️ 90–120 分鐘</span>
+            </div>
+            <div class="t-heading">🏛️ 十分老街放天燈</div>
+            <div class="t-desc">新北市平溪區十分老街。情侶最推薦包車／一日遊飯店接送，省去轉車體力消耗。</div>
+            <div class="info-box">
+              <strong>🚆 大眾運輸方式：</strong>搭捷運板南線至台北車站，轉乘台鐵火車至瑞芳站，再轉搭平溪線至十分站（行前務必查證 2027 年 1 月台鐵與平溪線最新班表及施工狀況）。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=台北車站&destination=十分老街+新北市平溪區&travelmode=transit" target="_blank" rel="noopener noreferrer">🚆 導航：北車 ➡️ 十分</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=十分老街+新北市平溪區" target="_blank" rel="noopener noreferrer">🏮 十分老街（精確地標）</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot red"></div>
+          <div class="t-card risk-red">
+            <div class="t-top">
+              <span class="t-time">12:30 – 16:30（或 17:45）</span>
+              <span class="badge badge-red">🔴 日落撤離警告</span>
+            </div>
+            <div class="t-heading">🏛️ 九份老街山城散策</div>
+            <div class="t-desc">新北市瑞芳區基山街（建議停留 150–180 分鐘）。1 月山城風強偏冷，老街小食建議兩人分食熱飲或小份鹹食。</div>
+            <div class="info-box alert-red">
+              <strong>⚠️ 16:30 返程 vs 點燈夜景抉擇：</strong>當日日落為 <strong>17:20</strong>、民用暮光結束於 <strong>17:45</strong>。16:30 下山將早於日落 50 分鐘撤離；若採包車延至 <strong>17:45–18:00</strong> 看完點燈再下山，無老鍋請改訂 20:00 後（但大聯盟打棒球平日 22:00 關門，請依偏好取捨）。
+            </div>
+            <div class="info-box">
+              <strong>🚆 交通接駁：</strong>十分搭平溪線回瑞芳站，轉公車 788 或 1062 上九份；或包車直達。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=十分老街+新北市平溪區&destination=九份老街+新北市瑞芳區基山街&travelmode=transit" target="_blank" rel="noopener noreferrer">🚆 導航：十分 ➡️ 九份</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=九份老街+新北市瑞芳區基山街" target="_blank" rel="noopener noreferrer">⛰️ 九份老街（精確地標）</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot amber"></div>
+          <div class="t-card risk-amber">
+            <div class="t-top">
+              <span class="t-time">19:30 或 20:00</span>
+              <span class="badge badge-amber">🟡 訂位對齊下山＆打擊場時間</span>
+            </div>
+            <div class="t-heading">🍽️ 無老鍋（台北西門町店）</div>
+            <div class="t-desc">建議停留 90–120 分鐘（每日 11:00–04:00，最後入座 03:30）。</div>
+            <div class="info-box">
+              <strong>📍 精確地址：</strong>台北市中正區中華路一段55號2樓（捷運西門站 4／5 號出口步行約 2 分鐘）。<br>
+              <strong>🚆 返程交通：</strong>包車直達西門町；或搭公車下山轉板南線至西門站（16:30 返程估算約 18:00–18:30 抵市區）。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=九份老街+新北市瑞芳區基山街&destination=無老鍋台北西門町店+台北市中正區中華路一段55號&travelmode=transit" target="_blank" rel="noopener noreferrer">🚆 導航：九份 ➡️ 無老鍋</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=無老鍋台北西門町店+台北市中正區中華路一段55號" target="_blank" rel="noopener noreferrer">🍲 無老鍋（精確地標）</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot amber"></div>
+          <div class="t-card risk-amber">
+            <div class="t-top">
+              <span class="t-time">21:30 前建議入場</span>
+              <span class="badge badge-red">🔴 平日 22:00 打烊</span>
+            </div>
+            <div class="t-heading">🏛️ 西門町商圈與大聯盟打棒球</div>
+            <div class="info-box alert-amber">
+              <strong>📍 入口與營業時間提醒：</strong>位於<strong>台北市萬華區峨眉街52號8樓</strong>，平日營業時間為 <strong>11:30–22:00</strong>！且<strong>須從「峨眉街停車場對面的電梯入口」才能上到 8 樓</strong>。若 21:30 後才吃完無老鍋恐趕不上揮棒，建議 19:30 前用餐完畢，或餐後改逛西門商圈與買師園鹽酥雞。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=無老鍋台北西門町店+台北市中正區中華路一段55號&destination=大聯盟棒壘球打擊場+台北市萬華區峨眉街52號&travelmode=walking" target="_blank" rel="noopener noreferrer">🚶 步行：無老鍋 ➡️ 大聯盟</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=大聯盟棒壘球打擊場+台北市萬華區峨眉街52號" target="_blank" rel="noopener noreferrer">⚾ 大聯盟打擊場（精確地標）</a>
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=大聯盟棒壘球打擊場+台北市萬華區峨眉街52號&destination=台北凱達大飯店+台北市萬華區艋舺大道167號&travelmode=transit" target="_blank" rel="noopener noreferrer">🏨 返程：➡️ 凱達飯店</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gem-section">
+        <div class="gem-header">
+          <h3>🌟 Day 2 在地隱藏美食追加（週五確定營業）</h3>
+          <span class="badge badge-gold">瑞芳九份＋西門</span>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">1. 阿霞龍鳳腿 & 瑞芳美食廣場（轉乘順遊）</span>
+            <span class="badge badge-gold">🏆 在地 60 年老攤</span>
+          </div>
+          <div class="gem-meta">📍 新北市瑞芳區民生街25號（阿霞）／民生街35巷2號（廣場 06:00–23:00）</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>距瑞芳火車站步行約 3 分鐘，往返十分與九份轉乘時順道必吃！市場外「阿霞龍鳳腿」飄香 60 年，有冷氣的美食廣場內更推「30 號里長伯排骨」（地瓜粉酥炸軟嫩）與近 60 年「老街口愛玉」。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=阿霞龍鳳+新北市瑞芳區民生街25號" target="_blank" rel="noopener noreferrer">🍢 導航：阿霞龍鳳腿</a>
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=瑞芳美食廣場+新北市瑞芳區民生街35巷2號" target="_blank" rel="noopener noreferrer">🏛️ 導航：瑞芳美食廣場</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">2. 酉時暮光（九份輕便路）</span>
+            <span class="badge badge-gold">🌊 海景隱藏咖啡</span>
+          </div>
+          <div class="gem-meta">📍 新北市瑞芳區輕便路61號</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>避開基山街擁擠觀光客的秘境好去處，店內採原木裝潢與藤製吊燈，可打開直面大海的吧台窗戶，在九份山城午後一邊歇腳一邊靜賞山海風景。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=酉時暮光+新北市瑞芳區輕便路61號" target="_blank" rel="noopener noreferrer">☕ 導航：酉時暮光</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">3. 師園鹽酥雞（西門町店）</span>
+            <span class="badge badge-green">⭐ Google 4.3 分（2,688 則）</span>
+          </div>
+          <div class="gem-meta">📍 台北市萬華區成都路32號 ｜ 🕒 12:00–00:30</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>台北著名老牌鹽酥雞，以濃郁蒜香辛香料與精準油溫聞名；週五營業至凌晨 00:30，無論無老鍋餐後或打完棒球回飯店前，外帶一份回凱達當深夜宵夜超對味。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=師園鹽酥雞西門町店+台北市萬華區成都路32號" target="_blank" rel="noopener noreferrer">🍗 導航：師園鹽酥雞</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-nav">
+        <button class="nav-btn" onclick="switchTab('day1')">⬅️ Day 1</button>
+        <button class="nav-btn primary" onclick="switchTab('day3')">Day 3 中山＆大稻埕 ➡️</button>
+      </div>
+    </section>
+
+    <!-- ==================== DAY 3 ==================== -->
+    <section id="day3" class="tab-panel">
+      <div class="day-banner">
+        <h2>Day 3｜中山赤峰街 ➡️ 迪化街 ➡️ 大稻埕日落 ➡️ 寧夏</h2>
+        <p>2027 年 1 月 9 日（週六）｜重點：赤丸改在赤峰街吃！16:45 必離迪化街搶 17:21 日落；留意路力草莓大福易提早售罄。</p>
+        <div class="sun-row">
+          <span class="sun-chip">🌅 日出 06:40</span>
+          <span class="sun-chip">🌇 日落 17:21</span>
+          <span class="sun-chip">🌃 天黑 17:45</span>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot amber"></div>
+          <div class="t-card risk-amber">
+            <div class="t-top">
+              <span class="t-time">11:30 – 15:15</span>
+              <span class="badge badge-amber">🟡 含赤丸改道＆寄物建議</span>
+            </div>
+            <div class="t-heading">🏛️🍽️ 中山商圈與赤峰街巡禮</div>
+            <div class="info-box alert-amber">
+              <strong>⚠️ 關鍵修正與動線優化：</strong><br>
+              1. <strong>赤丸團子茶屋</strong>實位於<strong>赤峰街 49 巷 2 號</strong>（就在麵線町同條巷內），請排在此區段享用，勿到迪化街尋找！<br>
+              2. <strong>參樓研製所</strong>為自然媒材手作飾品與選物空間（非甜點店）。<br>
+              3. 週六中山極易候位，<strong>Second floor 貳樓務必預約</strong>；建議 15:00 前結束採購並利用中山站或雙連站寄物櫃暫存戰利品，輕裝走往迪化街。
+            </div>
+            <div class="info-box">
+              <strong>🚆 交通：</strong>龍山寺站搭板南線至西門站，轉乘松山新店線至中山站。順道可逛赤峰街與週末市集。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=台北凱達大飯店+台北市萬華區艋舺大道167號&destination=捷運中山站&travelmode=transit" target="_blank" rel="noopener noreferrer">🚆 導航：飯店 ➡️ 中山站</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=赤峰街+台北市大同區" target="_blank" rel="noopener noreferrer">📍 赤峰街（精確地標）</a>
+            </div>
+            <div class="sub-label">🍴 午餐（二擇一）</div>
+            <div class="map-grid">
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=Second+Floor+貳樓中山南西店+台北市中山區中山北路二段16巷22號" target="_blank" rel="noopener noreferrer">🥞 貳樓中山南西（08:00–22:00）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=麵線町+台北市大同區赤峰街49巷25號" target="_blank" rel="noopener noreferrer">🍜 麵線町（赤峰街49巷25號）</a>
+            </div>
+            <div class="sub-label">🥤 特色飲品＆散步點心（含赤丸修正）</div>
+            <div class="map-grid">
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=ZUBIBA+尊比巴咖啡+台北市中山區中山北路二段26巷17號" target="_blank" rel="noopener noreferrer">☕ Zubiba（12:30–20:30）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=伊良可樂+台北市中山區中山北路二段44巷21-4號" target="_blank" rel="noopener noreferrer">🥤 伊良可樂（週六 13:00–19:00）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=赤丸團子+台北市大同區赤峰街49巷2號" target="_blank" rel="noopener noreferrer">🍡 赤丸團子（赤峰街49巷2號）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=灑白甜鮮奶麻糬+台北市大同區南京西路25巷38號" target="_blank" rel="noopener noreferrer">🍮 灑白甜（12:00–20:30）</a>
+            </div>
+            <div class="sub-label">💍 手作選物與服飾（建議寄物後輕裝前往大稻埕）</div>
+            <div class="map-grid">
+              <a class="map-btn shop" href="https://www.google.com/maps/search/?api=1&query=參樓研製所+台北市大同區赤峰街35巷12號" target="_blank" rel="noopener noreferrer">🌿 參樓研製所（赤峰街35巷12號）</a>
+              <a class="map-btn shop" href="https://www.google.com/maps/search/?api=1&query=Ur+living+台北中山" target="_blank" rel="noopener noreferrer">👗 Ur living</a>
+              <a class="map-btn shop" href="https://www.google.com/maps/search/?api=1&query=Air+space+台北中山" target="_blank" rel="noopener noreferrer">👗 Air space</a>
+              <a class="map-btn shop" href="https://www.google.com/maps/search/?api=1&query=Queen+shop+台北中山" target="_blank" rel="noopener noreferrer">👗 Queen shop</a>
+              <a class="map-btn shop" href="https://www.google.com/maps/search/?api=1&query=oh!her+台北中山" target="_blank" rel="noopener noreferrer">👗 oh!her</a>
+              <a class="map-btn shop" href="https://www.google.com/maps/search/?api=1&query=harper+台北中山" target="_blank" rel="noopener noreferrer">👗 harper</a>
+              <a class="map-btn shop" href="https://www.google.com/maps/search/?api=1&query=D+AF+台北中山" target="_blank" rel="noopener noreferrer">👠 D+AF</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot amber"></div>
+          <div class="t-card risk-amber">
+            <div class="t-top">
+              <span class="t-time">15:30 – 16:45</span>
+              <span class="badge badge-amber">🟡 16:45 必離街＆售罄預警</span>
+            </div>
+            <div class="t-heading">🏛️🍽️ 迪化街下午茶與老街散策</div>
+            <div class="t-desc">建議停留約 75 分鐘。由中山商圈沿南京西路或民生西路往西步行約 10–15 分鐘至大同區迪化街一段。</div>
+            <div class="info-box alert-amber">
+              <strong>🍓 路力草莓大福備案：</strong>位於迪化街一段 19 號（永樂市場對面），每日 11:00 開賣但<strong>週六經常下午 2 點就賣光</strong>！若 15:30 到達已售罄，可就近轉往老字號「滋養和菓子」（迪化街一段 247 號，09:00–18:00）或下方追加的「純真豆花」。務必設鬧鐘 <strong>16:40–16:45</strong> 走往碼頭！
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=台北市大同區赤峰街&destination=台北市大同區迪化街一段&travelmode=walking" target="_blank" rel="noopener noreferrer">🚶 步行：赤峰街 ➡️ 迪化街</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=台北市大同區迪化街一段" target="_blank" rel="noopener noreferrer">🏮 迪化街一段</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=路力草莓大福+台北市大同區迪化街一段19號" target="_blank" rel="noopener noreferrer">🍓 路力草莓大福（19號）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=滋養和菓子+台北市大同區迪化街一段247號" target="_blank" rel="noopener noreferrer">🍡 備案：滋養和菓子（247號）</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot green"></div>
+          <div class="t-card risk-green">
+            <div class="t-top">
+              <span class="t-time">16:50 – 18:30</span>
+              <span class="badge badge-green">🟢 17:21 日落卡位</span>
+            </div>
+            <div class="t-heading">🏛️ 大稻埕碼頭貨櫃市集</div>
+            <div class="t-desc">建議停留 90–100 分鐘。由迪化街步行 5–8 分鐘至民生西路底水門進入河濱公園，點熱飲迎 17:21 河畔日落與 17:45 後夜景。</div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=台北市大同區迪化街一段&destination=大稻埕碼頭貨櫃市集+台北市大同區民生西路底&travelmode=walking" target="_blank" rel="noopener noreferrer">🚶 步行：迪化街 ➡️ 碼頭</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=大稻埕碼頭貨櫃市集+台北市大同區民生西路底" target="_blank" rel="noopener noreferrer">🌅 大稻埕碼頭（精確地標）</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot green"></div>
+          <div class="t-card risk-green">
+            <div class="t-top">
+              <span class="t-time">18:45 – 20:30</span>
+              <span class="t-stay">⏱️ 90–105 分鐘</span>
+            </div>
+            <div class="t-heading">🍽️ 寧夏夜市晚餐</div>
+            <div class="t-desc">由大稻埕碼頭步行約 10 分鐘即達大同區寧夏路；餐後步行至雙連站或中山站（若有寄物可順道取回）轉捷運回凱達大飯店。</div>
+            <div class="info-box" style="margin-top:10px">
+              <strong>🇹🇼 台灣人私房必吃清單（寧夏夜市）</strong><br>
+              1. 門口外的家鄉炭烤雞排<br>
+              2. 門口外的香酥地瓜球（1 的對面）<br>
+              3. 一號攤位的現榨甘蔗檸檬飲料<br>
+              4. 劉芋仔，不加蛋黃的<br>
+              5. 林記麻辣鴨血臭豆腐加王子麵<br>
+              6. 林振耀燒麻糬，花生口味<br>
+              7. 童年木瓜牛奶
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=大稻埕碼頭貨櫃市集+台北市大同區民生西路底&destination=寧夏夜市+台北市大同區寧夏路&travelmode=walking" target="_blank" rel="noopener noreferrer">🚶 步行：碼頭 ➡️ 寧夏夜市</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=寧夏夜市+台北市大同區寧夏路" target="_blank" rel="noopener noreferrer">🏮 寧夏夜市</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=劉芋仔蛋黃芋餅+台北市大同區寧夏路091攤位" target="_blank" rel="noopener noreferrer">🥔 劉芋仔（不加蛋黃）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=你好+臺灣地瓜球+寧夏夜市" target="_blank" rel="noopener noreferrer">🍠 你好！臺灣地瓜球</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=雅米花生捲冰淇淋+寧夏夜市" target="_blank" rel="noopener noreferrer">🍦 雅米花生捲冰淇淋</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=家鄉炭烤雞排+寧夏夜市+台北市大同區寧夏路" target="_blank" rel="noopener noreferrer">🍗 家鄉炭烤雞排</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=香酥地瓜球+寧夏夜市+台北市大同區寧夏路" target="_blank" rel="noopener noreferrer">🍠 香酥地瓜球</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=現榨甘蔗檸檬+寧夏夜市+台北市大同區寧夏路" target="_blank" rel="noopener noreferrer">🍋 一號攤位甘蔗檸檬</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=林記麻辣鴨血臭豆腐+寧夏夜市+台北市大同區寧夏路" target="_blank" rel="noopener noreferrer">🍢 林記麻辣鴨血臭豆腐</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=林振耀燒麻糬+寧夏夜市+台北市大同區寧夏路" target="_blank" rel="noopener noreferrer">🍡 林振耀燒麻糬</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=童年木瓜牛奶+寧夏夜市+台北市大同區寧夏路" target="_blank" rel="noopener noreferrer">🥛 童年木瓜牛奶</a>
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=寧夏夜市+台北市大同區寧夏路&destination=台北凱達大飯店+台北市萬華區艋舺大道167號&travelmode=transit" target="_blank" rel="noopener noreferrer">🏨 返程：➡️ 凱達飯店</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gem-section">
+        <div class="gem-header">
+          <h3>🌟 Day 3 在地隱藏美食追加（週六確定營業）</h3>
+          <span class="badge badge-gold">中山＋大稻埕</span>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">1. Bopomoo 波波畝（中山往大稻埕沿線）</span>
+            <span class="badge badge-green">⭐ Google 4.9 分</span>
+          </div>
+          <div class="gem-meta">📍 台北市大同區南京西路239巷1樓 ｜ 🕒 週六 11:30–20:30</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>恰好位在中山商圈步行往迪化街沿線！招牌注音造型「告白雞蛋糕」可拼出「ㄨㄛˇ、ㄞˋ、ㄋㄧˇ」，外酥扎實帶 Q 勁，配草莓乳酪或蜂蜜奶油醬，情侶拍照打卡首選。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=Bopomoo波波畝+台北市大同區南京西路239巷1樓" target="_blank" rel="noopener noreferrer">🧇 導航：Bopomoo 波波畝</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">2. 純真豆花（迪化街永樂市場旁）</span>
+            <span class="badge badge-green">⭐ Google 4.4 分</span>
+          </div>
+          <div class="gem-meta">📍 台北市大同區民樂街43號 ｜ 🕒 每日 12:00–19:00</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>日系文青豆花冰品店，主打手工炒糖豆花與阿里山愛玉；招牌「芋頭艦隊冰」瀑布芋泥搭配手工奶酪與蜜芋頭，若路力草莓大福售罄可秒補位解饞。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=純真豆花+台北市大同區民樂街43號" target="_blank" rel="noopener noreferrer">🍨 導航：純真豆花</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">3. 鼠皮咖啡 soopi cafe（大稻埕老街區）</span>
+            <span class="badge badge-green">⭐ Google 4.8 分</span>
+          </div>
+          <div class="gem-meta">📍 台北市大同區延平北路二段61巷22號1樓 ｜ 🕒 週六 11:00–19:00（週四休）</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>藏身老屋巷弄的文青藝術空間與超友善寵物咖啡廳，提供手沖咖啡、特色「濃茶烏龍巴斯克」甜點及「蝦蝦干貝 XO 醬乾拌麵」，日落前小憩避寒最愜意。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=鼠皮咖啡+台北市大同區延平北路二段61巷22號" target="_blank" rel="noopener noreferrer">☕ 導航：鼠皮咖啡</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-nav">
+        <button class="nav-btn" onclick="switchTab('day2')">⬅️ Day 2</button>
+        <button class="nav-btn primary" onclick="switchTab('day4')">Day 4 松菸＆饒河 ➡️</button>
+      </div>
+    </section>
+
+    <!-- ==================== DAY 4 ==================== -->
+    <section id="day4" class="tab-panel">
+      <div class="day-banner">
+        <h2>Day 4｜松菸文創 🌿 Waku + ➡️ 三徑就荒 ➡️ 饒河</h2>
+        <p>2027 年 1 月 10 日（週日）｜重點：CREM 須提前預訂外帶無內用；松菸往饒河約步 15–22 分鐘；饒河 11 攤採分食策略。</p>
+        <div class="sun-row">
+          <span class="sun-chip">🌅 日出 06:40</span>
+          <span class="sun-chip">🌇 日落 17:21</span>
+          <span class="sun-chip">🌃 天黑 17:46</span>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot green"></div>
+          <div class="t-card risk-green">
+            <div class="t-top">
+              <span class="t-time">12:30 – 14:00</span>
+              <span class="badge badge-green">🟢 Google 4.3 分＆先訂位</span>
+            </div>
+            <div class="t-heading">🍽️ Waku + (Waku Waku Burger Pasta Cafe)</div>
+            <div class="t-desc">建議停留 90 分鐘（週日 11:00–21:30）。替代嘎哩奔之日系質感早午餐，建議提前電話或線上訂位。</div>
+            <div class="info-box">
+              <strong>📍 精確地址：</strong>台北市大安區光復南路294巷21號（龍山寺站搭板南線直達國父紀念館站，建議走 <strong>2 號或 3 號出口</strong>步行約 3 分鐘，餐後再走往松菸園區）。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=台北凱達大飯店+台北市萬華區艋舺大道167號&destination=Waku+Plus+台北市大安區光復南路294巷21號&travelmode=transit" target="_blank" rel="noopener noreferrer">🚆 導航：飯店 ➡️ Waku +</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=Waku+Plus+台北市大安區光復南路294巷21號" target="_blank" rel="noopener noreferrer">🍔 Waku +（精確地標）</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot amber"></div>
+          <div class="t-card risk-amber">
+            <div class="t-top">
+              <span class="t-time">14:00 – 18:00</span>
+              <span class="badge badge-amber">🟡 CREM 僅提供預訂外帶</span>
+            </div>
+            <div class="t-heading">🏛️🍽️ 松菸文創、週末市集與午後品茶</div>
+            <div class="t-desc">逛松山文創園區週日市集與誠品生活松菸店（信義區光復南路133號），並前往巷弄內的三徑就荒體驗茶藝（週日 11:00–20:00）。</div>
+            <div class="info-box alert-amber">
+              <strong>🍰 CREM 奶油甜點專門店預警：</strong>位於忠孝東路四段 553 巷 22 弄 2 之 1 號（僅週五、六、日 12:00–19:00 營業），<strong>無內用座位、店面僅提供提前預訂外帶且極易快速完售</strong>！務必出發前預訂取貨。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=Waku+Plus+台北市大安區光復南路294巷21號&destination=松山文創園區+台北市信義區光復南路133號&travelmode=walking" target="_blank" rel="noopener noreferrer">🚶 步行：Waku + ➡️ 松菸</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=松山文創園區+台北市信義區光復南路133號" target="_blank" rel="noopener noreferrer">🏛️ 松山文創園區</a>
+              <a class="map-btn shop" href="https://www.google.com/maps/search/?api=1&query=誠品生活松菸+台北市信義區光復南路133號" target="_blank" rel="noopener noreferrer">📚 誠品生活松菸</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=三徑就荒+台北市信義區忠孝東路四段553巷46弄15號" target="_blank" rel="noopener noreferrer">🍵 三徑就荒（553巷46弄15號）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=CREM奶油甜點專門店+台北市信義區忠孝東路四段553巷22弄2之1號" target="_blank" rel="noopener noreferrer">🍰 CREM（預訂外帶）</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot red"></div>
+          <div class="t-card risk-red">
+            <div class="t-top">
+              <span class="t-time">18:30 – 21:00</span>
+              <span class="badge badge-red">🔴 11 攤過飽和預警</span>
+            </div>
+            <div class="t-heading">🏛️🍽️ 饒河街觀光夜市 ➡️ 彩虹橋夜景</div>
+            <div class="info-box alert-red">
+              <strong>⚠️ 澱粉與油炸超載預警：</strong>午間漢堡義大利麵＋下午茶後，夜晚極難消化 11 攤小吃！建議全場<strong>兩人合吃一份</strong>並依下列三組攻略分配。
+            </div>
+            <div class="info-box">
+              <strong>🚆 路線修正與回程：</strong>由松菸步行至饒河夜市約 <strong>15–22 分鐘</strong>（亦可用 YouBike 或短程車），彩虹橋位於饒河夜市北側基隆河水門旁，建議逛夜市時順道穿出水門賞夜景。回程於捷運松山站搭松山新店線至西門站，轉板南線一站回龍山寺站。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=松山文創園區+台北市信義區光復南路133號&destination=饒河街觀光夜市+台北市松山區饒河街&travelmode=walking" target="_blank" rel="noopener noreferrer">🚶 步行：松菸 ➡️ 饒河</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=饒河街觀光夜市+台北市松山區饒河街" target="_blank" rel="noopener noreferrer">🏮 饒河夜市</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=松山彩虹橋+台北市松山區" target="_blank" rel="noopener noreferrer">🌉 松山彩虹橋</a>
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=捷運松山站&destination=台北凱達大飯店+台北市萬華區艋舺大道167號&travelmode=transit" target="_blank" rel="noopener noreferrer">🏨 捷運回凱達飯店</a>
+            </div>
+
+            <div class="sub-label">🔥 組別一｜必吃熱食（建議擇二現吃）</div>
+            <div class="map-grid">
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=福州世祖胡椒餅+台北市松山區饒河街249號" target="_blank" rel="noopener noreferrer">🥧 福州世祖胡椒餅（249號）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=陳董藥燉排骨+台北市松山區饒河街160號" target="_blank" rel="noopener noreferrer">🍲 陳董藥燉排骨（160號）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=下港名彭臭豆腐+台北市松山區饒河街189號" target="_blank" rel="noopener noreferrer">🍢 下港臭豆腐（189號）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=品臻黃金脆皮燒肉+饒河夜市" target="_blank" rel="noopener noreferrer">🥓 品臻黃金脆皮燒肉</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=好腸好嚐馬告香腸+饒河夜市" target="_blank" rel="noopener noreferrer">🌭 好腸好嚐馬告香腸</a>
+            </div>
+
+            <div class="sub-label">🧊 組別二｜清爽解膩</div>
+            <div class="map-grid">
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=御品元冰火湯圓+台北市松山區饒河街178號" target="_blank" rel="noopener noreferrer">🍧 御品元冰火湯圓（178號・必比登）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=雞房重地鹽水雞+饒河夜市" target="_blank" rel="noopener noreferrer">🥗 雞房重地鹽水雞</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=新榮發綠豆冰沙+饒河夜市" target="_blank" rel="noopener noreferrer">🥤 新榮發綠豆冰沙</a>
+            </div>
+
+            <div class="sub-label">🛍️ 組別三｜推薦外帶回飯店當宵夜</div>
+            <div class="map-grid">
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=麻薯寶寶+台北市松山區饒河街111號" target="_blank" rel="noopener noreferrer">🍡 麻薯寶寶（111號・4.7分）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=小明拔絲地瓜+台北市松山區饒河街33號" target="_blank" rel="noopener noreferrer">🍠 小明拔絲地瓜（33號・4.5分）</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=大上海香酥雞+饒河夜市" target="_blank" rel="noopener noreferrer">🍗 大上海香酥雞＆杏鮑菇</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gem-section">
+        <div class="gem-header">
+          <h3>🌟 Day 4 在地隱藏美食追加（週日確定營業）</h3>
+          <span class="badge badge-gold">松菸＋饒河</span>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">1. 蘇阿姨比薩屋（國父紀念館／松菸商圈）</span>
+            <span class="badge badge-green">⭐ Google 4.2 分</span>
+          </div>
+          <div class="gem-meta">📍 台北市大安區光復南路300號</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>就在 Waku + 所在巷口旁的數十年老字號，牽絲鬆厚披薩與號稱「被披薩耽誤的炸雞」鮮嫩爆汁，若 Waku + 訂位額滿可作超強午餐備案。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=蘇阿姨比薩屋+台北市大安區光復南路300號" target="_blank" rel="noopener noreferrer">🍕 導航：蘇阿姨比薩屋</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">2. 阿根脆皮臭豆腐（饒河夜市週末限定）</span>
+            <span class="badge badge-green">⭐ Google 4.2 分・週五至日限定</span>
+          </div>
+          <div class="gem-meta">📍 台北市松山區饒河街32號口攤位 ｜ 🕒 週五至日 17:30–22:30</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>一週僅賣三天的松山區傳奇小吃，Day 4 週日造訪正好碰上開攤！港式酥脆臭豆腐灌入秘製醬汁配酸甜黃金泡菜，咬下瞬間爆汁又爽口。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=阿根脆皮臭豆腐+台北市松山區饒河街32號" target="_blank" rel="noopener noreferrer">🍢 導航：阿根脆皮臭豆腐</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">3. 加賀魷魚大王（饒河夜市）</span>
+            <span class="badge badge-green">⭐ Google 4.2 分</span>
+          </div>
+          <div class="gem-meta">📍 台北市松山區饒河街120號 ｜ 🕒 週日 17:00–00:00</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>開業逾 20 年僅此一間，現燙脆彈魷魚拌沙茶醬、蒜頭與九層塔（可選辣醬或芥末），清爽脆口不油膩，能完美中和夜市炸物澱粉的厚重感。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=加賀魷魚大王+台北市松山區饒河街120號" target="_blank" rel="noopener noreferrer">🦑 導航：加賀魷魚大王</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-nav">
+        <button class="nav-btn" onclick="switchTab('day3')">⬅️ Day 3</button>
+        <button class="nav-btn primary" onclick="switchTab('day5')">Day 5 早午餐＆返港 ➡️</button>
+      </div>
+    </section>
+
+    <!-- ==================== DAY 5 ==================== -->
+    <section id="day5" class="tab-panel">
+      <div class="day-banner">
+        <h2>Day 5｜華西街早午餐 🍲 退房 ✈️ 啟程返港</h2>
+        <p>2027 年 1 月 11 日（週一）｜重點：小王煮瓜週一正常營業！務必提早於 11:15–11:30 離飯店赴機場趕 14:50 UO113。</p>
+        <div class="sun-row">
+          <span class="sun-chip">🌅 日出 06:40</span>
+          <span class="sun-chip">🌇 日落 17:22</span>
+          <span class="sun-chip">🌃 天黑 17:47</span>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot amber"></div>
+          <div class="t-card risk-amber">
+            <div class="t-top">
+              <span class="t-time">09:30 – 11:00</span>
+              <span class="badge badge-amber">🟡 週一營業・10:30 前完食</span>
+            </div>
+            <div class="t-heading">🍽️🏛️ 華西街小王煮瓜＋艋舺龍山寺</div>
+            <div class="t-desc">小王煮瓜位於<strong>台北市萬華區華西街17之4號（攤位153號）</strong>，09:00–20:00 營業（週二公休、週一正常開門，連 7 年米其林必比登推薦）。就在飯店步行 3–5 分鐘內，務必於 10:30 前吃完、10:45 前返飯店整理行李。</div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=台北凱達大飯店+台北市萬華區艋舺大道167號&destination=小王煮瓜+台北市萬華區華西街17之4號&travelmode=walking" target="_blank" rel="noopener noreferrer">🚶 步行：飯店 ➡️ 小王煮瓜</a>
+              <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=小王煮瓜+台北市萬華區華西街17之4號" target="_blank" rel="noopener noreferrer">🍲 小王煮瓜（精確地標）</a>
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=小王煮瓜+台北市萬華區華西街17之4號&destination=艋舺龍山寺&travelmode=walking" target="_blank" rel="noopener noreferrer">🚶 步行：小王 ➡️ 龍山寺</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=艋舺龍山寺" target="_blank" rel="noopener noreferrer">🙏 艋舺龍山寺</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot red"></div>
+          <div class="t-card risk-red">
+            <div class="t-top">
+              <span class="t-time">11:00 – 11:30</span>
+              <span class="badge badge-red">🔴 原案 12:00–12:15 風險高</span>
+            </div>
+            <div class="t-heading">🏨 辦理退房與領取行李（提前出發！）</div>
+            <div class="info-box alert-red">
+              <strong>⚠️ 關鍵修正：</strong>原案 12:00–12:15 出發搭機捷，抵航廈時間為 13:06–13:47，距假設 13:50 關櫃僅剩 3 分鐘！請務必改於 <strong>11:15 至 11:30 離開飯店</strong>，鎖定起飛前 2–2.5 小時（12:20–12:50）抵航廈。
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot green"></div>
+          <div class="t-card risk-green">
+            <div class="t-top">
+              <span class="t-time">11:30 – 13:00</span>
+              <span class="badge badge-green">🟢 雙方案時間推估</span>
+            </div>
+            <div class="t-heading">🚆 前往桃園國際機場</div>
+            <div class="info-box">
+              <strong>🚆 機場捷運（全程 66–92 分鐘）：</strong>板南線至台北車站，拖行李走地下街 10–15 分鐘轉機捷直達車。11:15 離店約 <strong>12:21–12:47</strong> 到；11:30 離店約 <strong>12:36–13:02</strong> 到。<br>
+              <strong>🚕 預約計程車（車程 40–60 分鐘）：</strong>遇雨或壅塞上看 65 分鐘。11:30 飯店上車約 <strong>12:10–12:30</strong> 抵航廈，可從容託運逛免稅店。
+            </div>
+            <div class="map-grid">
+              <a class="map-btn route" href="https://www.google.com/maps/dir/?api=1&origin=台北凱達大飯店+台北市萬華區艋舺大道167號&destination=桃園國際機場&travelmode=transit" target="_blank" rel="noopener noreferrer">🚆 導航：飯店 ➡️ 機場</a>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=桃園國際機場" target="_blank" rel="noopener noreferrer">✈️ 桃園國際機場</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot green"></div>
+          <div class="t-card risk-green">
+            <div class="t-top">
+              <span class="t-time">14:50 – 16:55</span>
+              <span class="t-stay">⏱️ 125 分鐘</span>
+            </div>
+            <div class="t-heading">🚆 香港快運 UO113 啟程返港</div>
+            <div class="t-desc">順利結束五天四夜台北之旅！請於行前依香港快運正式公告確認桃園機場櫃檯關閉時間。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gem-section">
+        <div class="gem-header">
+          <h3>🌟 Day 5 在地隱藏美食追加（週一早晨營業）</h3>
+          <span class="badge badge-gold">萬華龍山寺</span>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">1. 一甲子餐飲（萬華祖師廟旁）</span>
+            <span class="badge badge-gold">🏆 米其林必比登推薦</span>
+          </div>
+          <div class="gem-meta">📍 台北市萬華區康定路79號 ｜ 🕒 週一 09:00–19:00（週日休）</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>傳承三代的排隊名店，早上 9 點即開門且週一照常營業！肥瘦均勻滷得油亮入味的「焢肉飯」配限量「麻豆碗粿」堪稱絕配，可外帶與小王煮瓜雙拼。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=一甲子餐飲+台北市萬華區康定路79號" target="_blank" rel="noopener noreferrer">🍖 導航：一甲子餐飲</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">2. 三六食粑（原三六圓仔店｜龍山寺旁）</span>
+            <span class="badge badge-gold">🏺 1943 年八十年老店</span>
+          </div>
+          <div class="gem-meta">📍 台北市萬華區三水街92號 ｜ 🕒 每日 09:30–21:30</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>緊鄰龍山寺、距凱達僅數分鐘步程；招牌「蜜燒麻糬」（NT$60／2 顆）、花生甜湯與古早味圓仔溫潤親民，最適合參拜後當早點甜收尾。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=三六食粑+台北市萬華區三水街92號" target="_blank" rel="noopener noreferrer">🍡 導航：三六食粑</a>
+          </div>
+        </div>
+
+        <div class="gem-item">
+          <div class="gem-top">
+            <span class="gem-name">3. 誠記原汁排骨湯（萬華西昌街）</span>
+            <span class="badge badge-green">⏰ 24 小時全年無休</span>
+          </div>
+          <div class="gem-meta">📍 台北市萬華區西昌街247號 ｜ 🕒 24 小時營業</div>
+          <div class="gem-reason">💡 <strong>必吃理由：</strong>龍山寺排骨湯首選，大骨慢熬出清爽甘醇湯頭、排骨軟嫩入口即化，配一碗「高麗菜飯」即可快速享用熱食早餐，完全不受早市開攤時段限制。</div>
+          <div class="map-grid">
+            <a class="map-btn food" href="https://www.google.com/maps/search/?api=1&query=誠記原汁排骨湯+台北市萬華區西昌街247號" target="_blank" rel="noopener noreferrer">🥣 導航：誠記原汁排骨湯</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-nav">
+        <button class="nav-btn" onclick="switchTab('day4')">⬅️ Day 4</button>
+        <button class="nav-btn primary" onclick="switchTab('overview')">📌 回到總覽與清單</button>
+      </div>
+    </section>
+
+    <p class="footnote">💡 提示：點擊任一 Google Maps 按鈕皆已嵌入精確地址，將直接喚起手機地圖 App 檢視即時路況；用瀏覽器開啟時，行前清單勾選進度將自動儲存於本機。</p>
+  </main>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(function (panel) {
+        panel.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-btn').forEach(function (btn) {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-tab') === tabId) {
+          btn.classList.add('active');
+          try {
+            btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          } catch (e) {}
+        }
+      });
+
+      var target = document.getElementById(tabId);
+      if (target) {
+        target.classList.add('active');
+      }
+      try {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) {
+        window.scrollTo(0, 0);
+      }
+    }
+
+    (function initChecklist() {
+      var storageKey = 'taipei_trip_2027_checks_v3';
+      var saved = {};
+      try {
+        saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      } catch (e) {
+        saved = {};
+      }
+
+      document.querySelectorAll('.check-item input[type="checkbox"]').forEach(function (box) {
+        var key = box.getAttribute('data-chk');
+        if (saved[key]) {
+          box.checked = true;
+          box.closest('.check-item').classList.add('done');
+        }
+        box.addEventListener('change', function () {
+          var item = box.closest('.check-item');
+          if (box.checked) {
+            item.classList.add('done');
+            saved[key] = true;
+          } else {
+            item.classList.remove('done');
+            delete saved[key];
+          }
+          try {
+            localStorage.setItem(storageKey, JSON.stringify(saved));
+          } catch (e) {}
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
